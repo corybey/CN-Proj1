@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Networking concepts and Project 2 implementation details including HTTPS, XSS prevention, Firestore, and performance optimization."
+  />
   <title>Networking Concepts</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -10,7 +14,7 @@
   <header class="site-header">
     <div class="container">
       <h1>Networking Concepts</h1>
-      <p class="subtitle">DNS • IP Addressing • HTTP vs HTTPS • Security Evidence</p>
+      <p class="subtitle">DNS • IP Addressing • HTTPS • XSS Prevention • Firestore • Performance</p>
       <nav class="nav">
         <a href="index.html">Home</a>
         <a class="active" href="networking.html">Networking Concepts</a>
@@ -18,58 +22,97 @@
     </div>
   </header>
 
-  <main class="container card">
-    <section>
+  <main class="container">
+    <section class="card">
       <h2>1) DNS (Domain Name System)</h2>
       <p>
-        DNS translates a human-readable domain name into an IP address.
-        When a user visits the website URL, DNS resolves the domain to the hosting server’s IP.
+        DNS translates a human-readable domain name into an IP address. When a user visits
+        the website URL, DNS resolves the domain to the hosting server’s address so the browser
+        can send traffic to the correct destination.
       </p>
-      <p><strong>Evidence (paste screenshot in report):</strong></p>
       <pre><code>nslookup YOUR_GITHUB_PAGES_DOMAIN</code></pre>
-      <p class="muted">Example: nslookup yourusername.github.io</p>
+      <p class="muted">Example: nslookup corybey.github.io</p>
     </section>
 
-    <section>
+    <section class="card">
       <h2>2) IP Addressing (IPv4 / IPv6)</h2>
       <p>
-        A domain may resolve to IPv4 addresses, IPv6 addresses, or both. This shows how the Internet routes traffic
-        to the correct server using IP addressing.
+        IP addressing allows devices and servers to identify one another across the Internet.
+        Once DNS completes resolution, traffic is routed using IP addresses.
       </p>
-      <p><strong>Evidence commands:</strong></p>
       <pre><code>nslookup YOUR_GITHUB_PAGES_DOMAIN
 ping YOUR_GITHUB_PAGES_DOMAIN</code></pre>
-      <p class="muted">If IPv6 appears, mention it. If only IPv4 appears, say so.</p>
+      <p class="muted">If IPv6 appears in your results, mention it in your report.</p>
     </section>
 
-    <section>
-      <h2>3) Protocols: HTTP vs HTTPS</h2>
+    <section class="card">
+      <h2>3) HTTPS Security</h2>
       <p>
-        HTTP sends data in plaintext. HTTPS uses TLS to encrypt the connection, protecting confidentiality and integrity.
-        Modern browsers prefer HTTPS for public websites.
+        This website uses HTTPS to encrypt traffic between the client and server using TLS.
+        HTTPS protects confidentiality and integrity by helping prevent interception and tampering
+        during transmission.
       </p>
-      <p><strong>Evidence:</strong> Use browser DevTools → Network tab → click the request.</p>
       <ul>
-        <li>Status code (ex: 200 OK)</li>
-        <li>Request/Response headers</li>
-        <li>Protocol: HTTPS</li>
+        <li>Look for the lock icon in the browser</li>
+        <li>Use DevTools → Network to verify requests use <strong>https://</strong></li>
+        <li>Capture a screenshot for your report</li>
       </ul>
     </section>
 
-    <section>
-      <h2>4) Security Feature Implemented</h2>
+    <section class="card">
+      <h2>4) XSS Prevention Through Sanitized Rendering</h2>
       <p>
-        This website uses <strong>HTTPS</strong> through GitHub Pages. HTTPS uses TLS to encrypt traffic between the client
-        and server, helping prevent eavesdropping and tampering.
+        The interactive feedback board accepts user input, which creates a possible XSS attack surface.
+        To reduce this risk, all submitted content is sanitized before it is rendered back onto the page.
       </p>
-      <p><strong>Proof:</strong> Screenshot the lock icon + the DevTools request showing https://</p>
+      <ul>
+        <li>User input is trimmed and validated</li>
+        <li>DOMPurify sanitizes data before rendering</li>
+        <li>Unsafe HTML or script content is not executed in the browser</li>
+      </ul>
+      <div class="note">
+        <strong>Example:</strong> If a user submits a script tag, the page will display safe content
+        instead of executing malicious JavaScript.
+      </div>
     </section>
 
-    <section>
-      <h2>5) Challenges & Solutions</h2>
+    <section class="card">
+      <h2>5) Firestore Database Integration</h2>
+      <p>
+        Firestore makes the website dynamic by allowing visitor responses to be stored and retrieved
+        in real time. Instead of showing only static HTML content, the site now loads recent feedback
+        entries from a cloud database.
+      </p>
       <ul>
-        <li><strong>Challenge:</strong> (Example) Pages not deploying initially</li>
-        <li><strong>Solution:</strong> Enabled GitHub Pages in Settings → Pages and selected main branch</li>
+        <li>Collection used: <strong>feedback</strong></li>
+        <li>Fields stored: name, topic, message, createdAt</li>
+        <li>Data is loaded dynamically onto the home page</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>6) Performance Optimization</h2>
+      <p>
+        Several front-end optimizations were added to improve load behavior and responsiveness.
+      </p>
+      <ul>
+        <li>JavaScript is loaded with module/deferred behavior</li>
+        <li>DOMPurify is loaded with <strong>defer</strong></li>
+        <li>Meta description added for better page structure</li>
+        <li>Only essential assets are loaded</li>
+        <li>Reusable styling keeps the site lightweight</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>7) Challenges & Solutions</h2>
+      <ul>
+        <li><strong>Challenge:</strong> Making a static GitHub Pages site more dynamic</li>
+        <li><strong>Solution:</strong> Connected the front end directly to Firestore</li>
+        <li><strong>Challenge:</strong> Accepting user input securely</li>
+        <li><strong>Solution:</strong> Sanitized rendered content using DOMPurify</li>
+        <li><strong>Challenge:</strong> Keeping the site lightweight and fast</li>
+        <li><strong>Solution:</strong> Used minimal dependencies and deferred script loading</li>
       </ul>
     </section>
   </main>
@@ -78,4 +121,4 @@ ping YOUR_GITHUB_PAGES_DOMAIN</code></pre>
     <div class="container">© Spring 2026 • Networking Concepts Page</div>
   </footer>
 </body>
-</html> 
+</html>
