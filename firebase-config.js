@@ -13,8 +13,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// 🔥 THIS is what your app actually needs
 const db = getFirestore(app);
 
-// ✅ export it so script.js can use it
 export { db };
