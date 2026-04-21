@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Networking Concepts</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>Networking Concepts</h1>
+      <p class="subtitle">DNS • IP Addressing • HTTP vs HTTPS • Security Evidence</p>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a class="active" href="networking.html">Networking Concepts</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container card">
+    <section>
+      <h2>1) DNS (Domain Name System)</h2>
+      <p>
+        DNS translates a human-readable domain name into an IP address.
+        When a user visits the website URL, DNS resolves the domain to the hosting server’s IP.
+      </p>
+      <p><strong>Evidence (paste screenshot in report):</strong></p>
+      <pre><code>nslookup YOUR_GITHUB_PAGES_DOMAIN</code></pre>
+      <p class="muted">Example: nslookup yourusername.github.io</p>
+    </section>
+
+    <section>
+      <h2>2) IP Addressing (IPv4 / IPv6)</h2>
+      <p>
+        A domain may resolve to IPv4 addresses, IPv6 addresses, or both. This shows how the Internet routes traffic
+        to the correct server using IP addressing.
+      </p>
+      <p><strong>Evidence commands:</strong></p>
+      <pre><code>nslookup YOUR_GITHUB_PAGES_DOMAIN
+ping YOUR_GITHUB_PAGES_DOMAIN</code></pre>
+      <p class="muted">If IPv6 appears, mention it. If only IPv4 appears, say so.</p>
+    </section>
+
+    <section>
+      <h2>3) Protocols: HTTP vs HTTPS</h2>
+      <p>
+        HTTP sends data in plaintext. HTTPS uses TLS to encrypt the connection, protecting confidentiality and integrity.
+        Modern browsers prefer HTTPS for public websites.
+      </p>
+      <p><strong>Evidence:</strong> Use browser DevTools → Network tab → click the request.</p>
+      <ul>
+        <li>Status code (ex: 200 OK)</li>
+        <li>Request/Response headers</li>
+        <li>Protocol: HTTPS</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4) Security Feature Implemented</h2>
+      <p>
+        This website uses <strong>HTTPS</strong> through GitHub Pages. HTTPS uses TLS to encrypt traffic between the client
+        and server, helping prevent eavesdropping and tampering.
+      </p>
+      <p><strong>Proof:</strong> Screenshot the lock icon + the DevTools request showing https://</p>
+    </section>
+
+    <section>
+      <h2>5) Challenges & Solutions</h2>
+      <ul>
+        <li><strong>Challenge:</strong> (Example) Pages not deploying initially</li>
+        <li><strong>Solution:</strong> Enabled GitHub Pages in Settings → Pages and selected main branch</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© Spring 2026 • Networking Concepts Page</div>
+  </footer>
+</body>
+</html> 

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Computer Networking Project 2 website with HTTPS, Firestore database integration, XSS prevention, and performance optimization."
+  />
+  <title>Computer Networking Project 2</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>Computer Networking Project 2</h1>
+      <p class="subtitle">Secure, Dynamic, and Optimized Website (Spring 2026)</p>
+      <nav class="nav">
+        <a class="active" href="index.html">Home</a>
+        <a href="networking.html">Networking Concepts</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Team</h2>
+      <ul>
+        <li><strong>Name:</strong> Tacory “Cory” Bey</li>
+        <li><strong>Course:</strong> Computer Networking</li>
+        <li><strong>Instructor:</strong> Roya Hosseini</li>
+      </ul>
+
+      <h2>Project Objective</h2>
+      <p>
+        This project enhances a public website by adding security, database integration,
+        and performance optimization. The website demonstrates how networking concepts
+        such as DNS, IP addressing, HTTPS, and secure client-side rendering apply in
+        real-world deployments.
+      </p>
+
+      <div class="note">
+        <strong>Implemented features:</strong>
+        HTTPS, XSS prevention through sanitized rendering, Firestore database integration,
+        and front-end performance optimization.
+      </div>
+
+      <h2>Links</h2>
+      <ul>
+        <li>
+          <strong>GitHub Repo:</strong>
+          <a href="https://github.com/corybey/CN-Proj1" target="_blank" rel="noopener noreferrer">
+            github.com/corybey/CN-Proj1
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Interactive Networking Feedback Board</h2>
+      <p class="muted">
+        Submit your favorite networking concept and a short message. Entries are stored
+        in Firestore and safely rendered to the page.
+      </p>
+
+      <form id="feedbackForm" class="form-grid">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            maxlength="40"
+            placeholder="Enter your name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="topic">Favorite Networking Topic</label>
+          <select id="topic" name="topic" required>
+            <option value="">Select a topic</option>
+            <option value="DNS">DNS</option>
+            <option value="IP Addressing">IP Addressing</option>
+            <option value="TCP/IP">TCP/IP</option>
+            <option value="HTTP/HTTPS">HTTP/HTTPS</option>
+            <option value="TLS">TLS</option>
+            <option value="Network Security">Network Security</option>
+          </select>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            maxlength="250"
+            placeholder="Share a quick thought about networking..."
+            required
+          ></textarea>
+        </div>
+
+        <div class="full-width actions">
+          <button type="submit" class="btn">Submit Feedback</button>
+        </div>
+      </form>
+
+      <div id="formStatus" class="status hidden" aria-live="polite"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-heading">
+        <h2>Recent Submissions</h2>
+        <button id="refreshBtn" class="btn btn-secondary" type="button">Refresh</button>
+      </div>
+
+      <p class="muted">
+        This section loads data dynamically from Firestore.
+      </p>
+
+      <div id="feedbackList" class="feedback-list">
+        <p class="muted">Loading submissions...</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© Spring 2026 • Computer Networking Project 2</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js" defer></script>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
